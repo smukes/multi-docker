@@ -23,3 +23,14 @@ after_success:
   - docker push smukes/multi-nginx
   - docker push smukes/multi-server
   - docker push smukes/multi-worker
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket-name: "elasticbeanstalk-ap-south-1-269642219333"
+  bucket-path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY    
